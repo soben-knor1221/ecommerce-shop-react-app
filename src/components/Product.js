@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { BsPlus, BsEyeFill } from "react-icons/bs";
+import { BsPlus, BsEyeFill,BsPen } from "react-icons/bs";
 
 import { CartContext } from "../contexts/CartContext";
 
@@ -9,7 +9,7 @@ const Product = ({ product }) => {
   const { addToCart } = useContext(CartContext);
 
   // destructure product
-  const { id, image, category, title, price } = product;
+  const { id, image, category, name, price } = product;
   return (
     <div>
       <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition">
@@ -31,10 +31,16 @@ const Product = ({ product }) => {
             </div>
           </button>
           <Link
-            to={`/product/${id}`}
+            to={`/product/detail/${id}`}
             className="w-12 h-12 bg-white flex justify-center items-center text-primary drop-shadow-xl"
           >
             <BsEyeFill />
+          </Link>
+          <Link
+            to={`/product/${id}`}
+            className="w-12 h-12 bg-white flex justify-center items-center text-primary drop-shadow-xl"
+          >
+            <BsPen />
           </Link>
         </div>
       </div>
@@ -42,7 +48,7 @@ const Product = ({ product }) => {
       <div>
         <div className="tex-sm capitalize text-gray-500 mb-1">{category}</div>
         <Link to={`/product/${id}`}>
-          <h2 className="font-semibold mb-1">{title}</h2>
+          <h2 className="font-semibold mb-1">{name}</h2>
         </Link>
 
         <h2 className="font-semibbold">$ {price}</h2>
